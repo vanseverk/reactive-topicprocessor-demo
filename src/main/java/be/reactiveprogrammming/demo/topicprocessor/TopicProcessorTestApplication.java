@@ -2,6 +2,8 @@ package be.reactiveprogrammming.demo.topicprocessor;
 
 import java.time.Duration;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.TopicProcessor;
 
@@ -22,7 +24,7 @@ public class TopicProcessorTestApplication {
       outputFlux.subscribe(out -> System.out.println("Flux " + subscriptionNumber + " " + out));
     }
 
-    Thread.sleep(1000000000);
+    new CountDownLatch(1).await(100, TimeUnit.SECONDS);
   }
 
 }
